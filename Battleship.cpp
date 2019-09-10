@@ -2,14 +2,15 @@
 #include <vector>
 #include <cmath>
 #include <ctime>
+#include <string>
 using namespace std;
 
 int main() {
     vector<int> board(3,0);
     vector<vector<int>> matrix(3, board);  //setting up a vector board that will store which tiles the ships are randomly placed on
 
-    vector<int> coutBoard(3,0);
-    vector<vector<int>> printMatrix(3, coutBoard); //setting up an additional vector board to print out to the user after every turn
+    vector<string> coutBoard(3,"0");
+    vector<vector<string>> printMatrix(3, coutBoard); //setting up an additional vector board to print out to the user after every turn
 
     int shipX; //x coordinate used in placing the random ships
     int shipY;  //y coordinate used in placing the random ships
@@ -37,7 +38,7 @@ int main() {
 
         if( matrix.at(guessX - 1 ).at(guessY - 1) == 1){ //checking to see if the players guess is a hit (equal to 1 in the matrix vector)
             cout << "You sunk my battleship! (" << guesses + 1 << " guesses!)" << endl;  //printing out the players guesses
-            printMatrix.at(guessX - 1 ).at(guessY - 1) = 'X'; //changing the value in the printMatrix vector to display that the player hit the battleship
+            printMatrix.at(guessX - 1 ).at(guessY - 1) = "X"; //changing the value in the printMatrix vector to display that the player hit the battleship
 
             for(i = 0; i < 3; i++){  //a for loop that prints out the updated board
                 cout << "!";
@@ -51,7 +52,7 @@ int main() {
         }
         else{  //if the players guess was incorrect this will happen
             cout << "Miss!" << endl;
-            printMatrix.at(guessX - 1 ).at(guessY - 1) = 'O'; //changing the value in the printMatrix vector to display that the player missed the battleship
+            printMatrix.at(guessX - 1 ).at(guessY - 1) = "O"; //changing the value in the printMatrix vector to display that the player missed the battleship
 
             for(i = 0; i < 3; i++){ //a for loop that prints out the updated board
                 cout << "!";
