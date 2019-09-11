@@ -28,24 +28,32 @@ int main() {
         matrix.at(shipX).at(shipY) = 1;  //sets the location of the ship equal to 1 so that we can check and see if the player hit the ship later
     }
 
+    for (i = 0; i < 3; i++) { //a for loop that prints out the initial board for the user
+        cout << "!";
+        for (j = 0; j < 3; j++) {
+            cout << printMatrix.at(i).at(j) << "!";
+        }
+        cout << endl;
+        cout << "-------" << endl;
+    }
+
     for(guesses = 0; guesses < 100; guesses++){   //this is a big for loop that will continue to iterate until the player guesses correctly
         cout << "Guess your x value between 1 and 3!" << endl;
         cin >> guessX;      //getting a value for the players x coordinate guess
         cout << "Guess your y value between 1 and 3!" << endl;
         cin >> guessY;      //getting a value for the players y coordinate guess
 
-        if((guessX > 3 || guessX < 1)||(guessY > 3 || guessY < 1)){
+        if((guessX > 3 || guessX < 1)||(guessY > 3 || guessY < 1)){  //checks to see if the numbers entered are valid
             cout << "that isn't a valid input" << endl;
         }
-        else {
+        else {  //if the numbers imputed are valid the program will execute normally
             cout << "Location X-Y = " << guessX << "-" << guessY << endl;  //printing out the players guess for them
 
             if (matrix.at(guessX - 1).at(guessY - 1) ==
                 1) { //checking to see if the players guess is a hit (equal to 1 in the matrix vector)
                 cout << "You sunk my battleship! (" << guesses + 1 << " guesses!)"
                      << endl;  //printing out the players guesses
-                printMatrix.at(guessX - 1).at(guessY -
-                                              1) = "X"; //changing the value in the printMatrix vector to display that the player hit the battleship
+                printMatrix.at(guessX - 1).at(guessY -1) = "X"; //changing the value in the printMatrix vector to display that the player hit the battleship
 
                 for (i = 0; i < 3; i++) {  //a for loop that prints out the updated board
                     cout << "!";
