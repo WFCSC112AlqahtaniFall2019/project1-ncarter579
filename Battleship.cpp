@@ -34,33 +34,41 @@ int main() {
         cout << "Guess your y value between 1 and 3!" << endl;
         cin >> guessY;      //getting a value for the players y coordinate guess
 
-        cout << "Location X-Y = " << guessX << "-" << guessY<< endl;  //printing out the players guess for them
-
-        if( matrix.at(guessX - 1 ).at(guessY - 1) == 1){ //checking to see if the players guess is a hit (equal to 1 in the matrix vector)
-            cout << "You sunk my battleship! (" << guesses + 1 << " guesses!)" << endl;  //printing out the players guesses
-            printMatrix.at(guessX - 1 ).at(guessY - 1) = "X"; //changing the value in the printMatrix vector to display that the player hit the battleship
-
-            for(i = 0; i < 3; i++){  //a for loop that prints out the updated board
-                cout << "!";
-                for(j = 0; j < 3; j++){
-                    cout <<  printMatrix.at(i).at(j) << "!" ;
-                }
-                cout << endl;
-                cout << "-------" << endl;
-            }
-            break;  //breaks out of the for loop and ends the program because the player won
+        if((guessX > 3 || guessX < 1)||(guessY > 3 || guessY < 1)){
+            cout << "that isn't a valid input" << endl;
         }
-        else{  //if the players guess was incorrect this will happen
-            cout << "Miss!" << endl;
-            printMatrix.at(guessX - 1 ).at(guessY - 1) = "O"; //changing the value in the printMatrix vector to display that the player missed the battleship
+        else {
+            cout << "Location X-Y = " << guessX << "-" << guessY << endl;  //printing out the players guess for them
 
-            for(i = 0; i < 3; i++){ //a for loop that prints out the updated board
-                cout << "!";
-                for(j = 0; j < 3; j++){
-                    cout <<  printMatrix.at(i).at(j) << "!" ;
+            if (matrix.at(guessX - 1).at(guessY - 1) ==
+                1) { //checking to see if the players guess is a hit (equal to 1 in the matrix vector)
+                cout << "You sunk my battleship! (" << guesses + 1 << " guesses!)"
+                     << endl;  //printing out the players guesses
+                printMatrix.at(guessX - 1).at(guessY -
+                                              1) = "X"; //changing the value in the printMatrix vector to display that the player hit the battleship
+
+                for (i = 0; i < 3; i++) {  //a for loop that prints out the updated board
+                    cout << "!";
+                    for (j = 0; j < 3; j++) {
+                        cout << printMatrix.at(i).at(j) << "!";
+                    }
+                    cout << endl;
+                    cout << "-------" << endl;
                 }
-                cout << endl;
-                cout << "-------" << endl;
+                break;  //breaks out of the for loop and ends the program because the player won
+            } else {  //if the players guess was incorrect this will happen
+                cout << "Miss!" << endl;
+                printMatrix.at(guessX - 1).at(guessY -
+                                              1) = "O"; //changing the value in the printMatrix vector to display that the player missed the battleship
+
+                for (i = 0; i < 3; i++) { //a for loop that prints out the updated board
+                    cout << "!";
+                    for (j = 0; j < 3; j++) {
+                        cout << printMatrix.at(i).at(j) << "!";
+                    }
+                    cout << endl;
+                    cout << "-------" << endl;
+                }
             }
         }
     }  //if the player guesses incorrectly, this loop will iterate forever until they manage to hit a battleship
